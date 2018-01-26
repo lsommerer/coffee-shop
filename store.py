@@ -52,6 +52,28 @@ class Store(object):
                 except TypeError:
                     print(f'{name} not added to shipping methods. Check {filename}.')
 
+    def display(self, displayTypes = None):
+        """Display all of the products of a certain type or all products (default)."""
+        if displayTypes == None:
+            displayTypes = Product.types
+        else:
+            if type(displayTypes) == type('someString'):
+                displayTypes = [displayTypes]
+        productCounter = 1
+        productList = []
+        print()
+        for displayType in displayTypes:
+            for product in self.products:
+                if product.type == displayType:
+                    print(f'{productCounter}. {product}.')
+                    productList.append(product)
+                    productCounter += 1
+            print()
+        return productList
+
+
+
+
     def sales(self):
         """Returns the total dollar amount sold today."""
         pass
@@ -66,3 +88,16 @@ class Store(object):
 
     def add_customer(self, customer):
         self.__customers.append(customer)
+
+    def get_products(self):
+        return self.__products
+
+    def get_shipping_methods(self):
+        return self.__shippingMethods
+
+    def get_customers(self):
+        return self.__customers
+
+    products = property(get_products)
+    shippingMethods = property(get_shipping_methods)
+    customers = property(get_customers)

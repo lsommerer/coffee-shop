@@ -2,6 +2,8 @@ from toolbox import is_number
 
 class Product(object):
 
+    types = ['coffee', 'tea']
+
     def __init__(self, name, type, price):
         self.__name = str(name).strip()
         if is_number(price):
@@ -9,10 +11,11 @@ class Product(object):
         else:
             raise TypeError('Product price must be a numerical type.')
         type = str(type).strip()
-        if type in ['coffee', 'tea']:
+        if type in Product.types:
             self.__type = type
         else:
-            raise TypeError('Product type must be coffee or tea.')
+            raise TypeError('Product type must be a member of Product.type.')
+
     def __str__(self):
         return f'{self.name} ({self.type}) ${self.price:0.2f}/lb'
 

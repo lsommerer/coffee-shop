@@ -1,11 +1,12 @@
-from toolbox import is_number
 from store import Store
 from customer import Customer
-from product import Product
-from order import Order
-from address import Address
 from lineitem import LineItem
+from order import Order
+from product import Product
 from shippingmethod import ShippingMethod
+from store import Store
+from address import Address
+
 
 def test():
     print('\n----product test----')
@@ -46,5 +47,14 @@ def test():
     store.add_customer(customer)
     print('\n----store test 2----')
     print(store)
+    store.display()
+    store.display(['mushrooms', 'coffee'])
+    store.display('tea')
+
+    print('\n----order test 3----')
+    order.add(store.products[1], 10.5)
+    order.add(store.products[2], 0.5)
+    print(order)
+
 
 test()

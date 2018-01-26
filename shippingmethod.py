@@ -18,6 +18,10 @@ class ShippingMethod(object):
         string =  f'{self.name} ${self.__basePrice:0.2f} + ${self.__pricePerPound:0.2f}/lb '
         string += f'({self.description})'
         return string
+
+    def cost(self, weight):
+        """Given the weight in pounds, return the cost to ship with this method."""
+        return self.basePrice + ( self.pricePerPound * weight)
     
     def get_name(self):
         return self.__name
